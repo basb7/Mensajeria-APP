@@ -11,16 +11,27 @@
     <section class="container-fluid">
         <div class="row mt-5">
             <div class="col col-sm-6 col-md-3 border mx-auto px-4 bg-white shadow">
-                <h1 class="text-center mt-3 mb-3">Login</h1>
-                <form class="">
+                <h1 class="text-center mt-3 mb-3">Iniciar sesión</h1>
+                <form action="{{url_for('login')}}" class="" method="post">
                     <div class="mb-2">
-                      <input type="email" class="form-control rounded-0" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Teléfono, usuario o correo electrónico">
+                      <input type="text" name="user" class="form-control rounded-0" id="user" aria-describedby="emailHelp" placeholder="Teléfono, usuario o correo electrónico">
                     </div>
                     <div class="mb-3">
-                      <input type="password" class="form-control rounded-0" id="exampleInputPassword1" placeholder="Contraseña">
+                      <input type="password" name="password" class="form-control rounded-0" id="password" placeholder="Contraseña">
                     </div>
                     <button type="submit" class="btn btn-primary mb-3 w-100 rounded-0">Entrar</button>
                 </form>
+                <section>
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                    <div class=flashes>
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                    </div>
+                    {% endif %}
+                    {% endwith %}
+                </section>
                 <hr class="mt-1">
                 <div  class="text-center pb-3">
                     <a class="text-center text-decoration-none" href="{{url_for('recover')}}"><small>¿Haz olvidado la contraseña?</small></a>

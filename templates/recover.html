@@ -12,13 +12,25 @@
         <div class="row mt-5">
             <div class="col col-sm-6 col-md-3 border mx-auto px-4 pt-3 bg-white shadow">
                 <h1 class="text-center mt-3 mb-3 fs-5">¿Tienes problemas para entrar?</h1>
-                <p class="text-center text-muted">Introduce tu correo electrónico, número de teléfono o nombre de usuario y te enviaremos un enlace para que vuelvas a entrar en tu cuenta.</p>
-                <form class="">
+                <p class="text-center text-muted">Introduce tu correo electrónico o nombre de usuario y te enviaremos un enlace para que vuelvas a entrar en tu cuenta.</p>
+                <form action="{{url_for('recover')}}" method="post" class="">
                     <div class="mb-2">
-                      <input type="email" class="form-control rounded-0" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Teléfono, usuario o correo electrónico">
+                      <input type="text" name="username" class="form-control rounded-0" id="username" aria-describedby="usernameHelp" placeholder="Usuario o correo electrónico">
                     </div>
                     <button type="submit" class="btn btn-primary mb-3 w-100 rounded-0">Recuperar cuenta</button>
                 </form>
+                <section>
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                    <div class=flashes>
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                    </div>
+                    <hr>
+                    {% endif %}
+                    {% endwith %}
+                </section>
             </div> 
         </div>
         <div class="row mt-3">
@@ -32,6 +44,7 @@
             </div>
         </div>
     </section>
+    
     
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
